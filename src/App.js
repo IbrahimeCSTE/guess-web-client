@@ -1,24 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
-
+import "./App.css";
+import HomeScreen from "./Screen/HomeScreen";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Navbar from "./Component/Header/Navbar";
+import SubNav from "./Component/Header/SubNav";
+import WinnerScreen from "./Screen/WinnerScreen";
+import IdeaScreen from "./Screen/IdeaScreen";
+import AdminScreen from "./Admin/AdminScreen";
+import PravateScreen from "./Screen/PravateScreen";
+import PrivateRoute from "./PrivateRouter/PrivateRouter";
+import NewsScreen from "./Screen/NewsScreen";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <SubNav />
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/winner-prize" component={WinnerScreen} />
+          <Route exact path="/own-idea" component={IdeaScreen} />
+          <PrivateRoute exact path="/admin">
+            <AdminScreen />
+          </PrivateRoute>
+          <Route exact path="/private" component={PravateScreen} />
+          <Route exact path="/news" component={NewsScreen} />
+        </Switch>
+      </Router>
+    </>
   );
 }
 

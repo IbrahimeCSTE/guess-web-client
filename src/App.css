@@ -1,38 +1,135 @@
-.App {
-  text-align: center;
+*{
+  margin: 0;
+  padding: 0;
 }
+body{
+  font-family: 'Roboto Slab', serif;
+  font-family: 'Ubuntu', sans-serif;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+i,a{
+  cursor: pointer;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Sub navbar */
+.subNav{
   display: flex;
-  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
+  background-color:#491c5e;
+  color: #ffffff;
+  padding: 3px 0;
+
+}
+.subNav p{
+  font-size: 15px;
+}
+.navbarBg{
+  background-color: #6c2a8c;
+ 
+}
+.LinkColor{
+  color: #ffffff;
+ 
+}
+.navbar-brand img{
+  height: 35px;
+  width: 35px;
+  border: 1px solid white;
+  border-radius: 360px;
+}
+.activeLink{
+  color:rgb(12, 130, 4);
+  font-weight: 700;
+  
+}
+.headerImg .card{
+  border: none;
+  border-radius:0;
+
+}
+.headerImg img{
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 60vh;
+  filter:brightness(20%) ;
+ 
+}
+.cardText{
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+}
+.spinerColor{
+  color: goldenrod;
+  margin-left:-15px;
+  margin-top: 2px;
 }
 
-.App-link {
-  color: #61dafb;
+/* Notice */
+.eCnoticardPoint{
+  box-shadow: 0px 0px 10px  black;
+  margin: 10px 0;
+}
+.prizeCard img{
+  height:200px ;
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+/* Display Time */
+.displayTime{
+  
+  color: rgb(218, 237, 13);
+  margin: 10px 0;
+
+}
+
+/* Winner section */
+.winnerCard{
+  background-color: #ff287d;
+}
+.winnerPerson{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px 0;
+}
+
+.winnerTophy{
+  font-size: 40px;
+  color: orange;
+}
+
+/* Share-idea */
+.nexPevBtn{
+  display: flex;
+  justify-content: space-between;
+}
+/* .nexPevBtn .btn1{
+  margin: 5px 20px 5px 0px;
+}
+.nexPevBtn .btn2{
+  margin: 5px 0px 5px 20px;
+} */
+
+
+@media only screen and (max-width:662px) {
+  .subEmail{
+    display:none;
   }
-  to {
-    transform: rotate(360deg);
+  .cardText{
+     font-size: 10px;
+  }
+  .winnerPerson{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+  }
+  .PrizeAndUpdate{
+    display: flex;
+    flex-direction: column-reverse;
   }
 }
