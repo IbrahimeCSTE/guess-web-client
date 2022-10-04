@@ -1,6 +1,20 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 
 const WinnerScreen = () => {
+  const [allIdea, setAllIdea] = useState([]);
+  const [winnerId, setWinnerId] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get("/api/idea");
+      setAllIdea(data);
+      const res = await axios.get("/api/winner-result");
+      setWinnerId(res.data);
+    };
+    fetchData();
+  }, []);
+  console.log(winnerId);
   return (
     <div className="container text-center my-5">
       <div className="cardHeader">
@@ -8,57 +22,38 @@ const WinnerScreen = () => {
         <h3>Prize Winner</h3>
         <hr />
       </div>
-      <div className="card winnerCard p-4">
-        <div className="card my-2">
-          <div className="winnerPerson">
-            <h5>1.</h5>
-            <h5>
-              <i class="fas fa-user-circle"></i>Md.Ibrahim
-            </h5>
-            <h5>017717717132</h5>
-            <h5>Pabna</h5>
-          </div>
-        </div>
-        <div className="card my-2">
-          <div className="winnerPerson">
-            <h5>1.</h5>
-            <h5>
-              <i class="fas fa-user-circle"></i>Md.Ibrahim
-            </h5>
-            <h5>017717717132</h5>
-            <h5>Pabna</h5>
-          </div>
-        </div>
-        <div className="card my-2">
-          <div className="winnerPerson">
-            <h5>1.</h5>
-            <h5>
-              <i class="fas fa-user-circle"></i>Md.Ibrahim
-            </h5>
-            <h5>017717717132</h5>
-            <h5>Pabna</h5>
-          </div>
-        </div>
-        <div className="card my-2">
-          <div className="winnerPerson">
-            <h5>1.</h5>
-            <h5>
-              <i className="fas fa-user-circle"></i>Md.Ibrahim
-            </h5>
-            <h5>017717717132</h5>
-            <h5>Pabna</h5>
-          </div>
-        </div>
-        <div className="card my-2">
-          <div className="winnerPerson">
-            <h5>1.</h5>
-            <h5>
-              <i class="fas fa-user-circle"></i>Md.Ibrahim
-            </h5>
-            <h5>017717717132</h5>
-            <h5>Pabna</h5>
-          </div>
-        </div>
+      <div className="Winners card winnerCard p-4">
+        {winnerId ? (
+          winnerId.map((res, idx) => (
+            <div key={idx} className="card my-2">
+              <div className="winnerPerson row">
+                <div className="col-md-3">
+                  <h5>{idx + 1}</h5>
+                </div>
+                <div className="col-md-3">
+                  <h5>
+                    <i className="fas fa-user-circle"></i>
+                    {allIdea[res.winnerIdx] && allIdea[res.winnerIdx].name}
+                  </h5>
+                </div>
+                <div className="col-md-3">
+                  <h5>
+                    {allIdea[res.winnerIdx] && allIdea[res.winnerIdx].mobile}
+                  </h5>
+                </div>
+                <div className="col-md-3">
+                  <h5>
+                    {allIdea[res.winnerIdx] && allIdea[res.winnerIdx].zila}
+                  </h5>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <h4 className="text-white text-center">
+            বিজয়ী ফলাফল প্রকাশ করে হয়নি।
+          </h4>
+        )}
       </div>
     </div>
   );

@@ -1,93 +1,48 @@
+import axios from "axios";
 import React from "react";
+import { useState } from "react";
+import AdminNav from "./AdminNav";
 
 const AdminScreen = () => {
+  const [admin, setAdmin] = useState(false);
+  const handleLogout = async () => {
+    await axios.post("/api/admin", { admin });
+  };
   return (
     <div className="container my-5">
-      <div className="card p-4">
-        <div className="mobileUpdate">
-          <h5>Mobile update</h5>
-          <div className="card p-2">
-            <input
-              type="number"
-              className="form-control my-2"
-              placeholder="Mobile update"
-            />
-            <button className="btn btn-info form-control my-2">Update</button>
+      <AdminNav></AdminNav>
+      <div className="my-4">
+        <div className="row">
+          <div className="col-md-4 my-2">
+            <div className="card bg-dark">
+              <h4>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
+                nam.
+              </h4>
+            </div>
+          </div>
+          <div className="col-md-4 my-2">
+            <div className="card bg-dark">
+              <h4>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
+                nam.
+              </h4>
+            </div>
+          </div>
+          <div className="col-md-4 my-2">
+            <div className="card bg-dark">
+              <h4>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint,
+                nam.
+              </h4>
+            </div>
           </div>
         </div>
-        <div className="emailUpdate">
-          <h5>Email update</h5>
-          <div className="card p-2">
-            <input
-              type="email"
-              className="form-control my-2"
-              placeholder="Email update"
-            />
-            <button className="btn btn-info form-control my-2">Update</button>
-          </div>
-        </div>
-        <div className="ytLink">
-          <h5>Youtube Link</h5>
-
-          <div className="card p-2">
-            <input
-              type="text"
-              className="form-control my-2"
-              placeholder="yt link update"
-            />
-            <button className="btn btn-info form-control my-2">Update</button>
-          </div>
-        </div>
-        <div className="fbLink mt-4">
-          <h5>Facebook Page Link</h5>
-          <div className="card p-2">
-            <input
-              type="text"
-              className="form-control my-2"
-              placeholder="fb page link update"
-            />
-            <button className="btn btn-info form-control my-2">Update</button>
-          </div>
-        </div>
-        <div className="updateNews mt-4">
-          <h5>Update News</h5>
-          <div className="card p-2">
-            <textarea
-              type="text"
-              className="form-control my-2"
-              placeholder="update news"
-            />
-            <button className="btn btn-info form-control my-2">Update</button>
-          </div>
-        </div>
-        <div className="prizeSection mt-4">
-          <h5>Prize</h5>
-          <div className="card p-2">
-            <input type="file" className="form-control my-2" />
-            <input
-              type="text"
-              className="form-control my-2"
-              placeholder="winnerNo"
-            />
-            <textarea
-              type="text"
-              className="form-control my-2"
-              placeholder="whichPrize"
-            />
-            <button className="btn btn-info form-control my-2">Add</button>
-          </div>
-        </div>
-        <div className="updateNews mt-4">
-          <h5>Important Information</h5>
-          <div className="card p-2">
-            <textarea
-              type="text"
-              className="form-control my-2"
-              placeholder="Add information"
-            />
-            <button className="btn btn-info form-control my-2">Add</button>
-          </div>
-        </div>
+      </div>
+      <div className="logoutAdmin">
+        <button onClick={handleLogout} className="btn btn-danger form-control">
+          Logout
+        </button>
       </div>
     </div>
   );

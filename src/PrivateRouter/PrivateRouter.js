@@ -1,8 +1,17 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { Redirect, Route } from "react-router-dom";
 
 const PrivateRoute = ({ children, ...rest }) => {
-  let auth = true;
+  const [auth, setAuth] = useState(false);
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data } = await axios.get("/api/admin");
+      setAuth(data[0].admin);
+    };
+    fetchData();
+  }, []);
   return (
     <Route
       {...rest}
@@ -10,12 +19,7 @@ const PrivateRoute = ({ children, ...rest }) => {
         auth ? (
           children
         ) : (
-          <Redirect
-            to={{
-              pathname: "/private",
-              state: { from: location },
-            }}
-          />
+          <h3 className="text-center mt-4">Admin access first</h3>
         )
       }
     />

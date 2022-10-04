@@ -1,6 +1,24 @@
-import React from "react";
-
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 const PrizeScreen = () => {
+  const [unews, setuNews] = useState([]);
+  const [flink, setfLink] = useState([]);
+  const [ylink, setyLink] = useState([]);
+  const [winnerPrize, setWinnerPrize] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const winnerPrizeDetails = await axios.get("/api/winner-details");
+      setWinnerPrize(winnerPrizeDetails.data);
+      const { data } = await axios.get("/api/update-news");
+      setuNews(data[data.length - 1]);
+      const res1 = await axios.get("/api/fb-link");
+      setfLink(res1.data[data.length - 1]);
+      const res = await axios.get("/api/yt-link");
+      setyLink(res.data[data.length - 1]);
+    };
+    fetchData();
+  }, []);
   return (
     <div className="container my-4">
       <div className="row PrizeAndUpdate">
@@ -11,120 +29,25 @@ const PrizeScreen = () => {
             </div>
             <div className="card-body">
               <div className="row">
-                <div className="col-md-4">
-                  <div className="card prizeCard">
-                    <img
-                      className="card-img-top img-fluid"
-                      src="https://i.pinimg.com/736x/0c/aa/9c/0caa9c782c1a549147f0c47199e153ff.jpg"
-                      alt="Card image cap"
-                    />
-                    <div className="card-body">
-                      <h5 className="mt-1 card-title text-center">
-                        ১ম লটারি বিজয়ী
-                      </h5>
-                      <hr />
-                      <p className="card-text">
-                        লটারি মাধ্যমে যে প্রথম স্থান অধিকার করবে তার জন্য রয়েছে
-                        বাংলাদেশের ১টি জার্সি।
-                      </p>
+                {winnerPrize &&
+                  winnerPrize.map((item, idx) => (
+                    <div key={idx} className="col-md-4">
+                      <div className="card prizeCard">
+                        <img
+                          className="card-img-top img-fluid"
+                          src={item.imgUrl}
+                          alt="Card image cap"
+                        />
+                        <div className="card-body">
+                          <h5 className="mt-1 card-title text-center">
+                            {item.winnerNo}
+                          </h5>
+                          <hr />
+                          <p className="card-text">{item.prize}</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="card prizeCard">
-                    <img
-                      className="card-img-top img-fluid"
-                      src="https://i.pinimg.com/736x/0c/aa/9c/0caa9c782c1a549147f0c47199e153ff.jpg"
-                      alt="Card image cap"
-                    />
-                    <div className="card-body">
-                      <h5 className="mt-1 card-title text-center">
-                        ১ম লটারি বিজয়ী
-                      </h5>
-                      <hr />
-                      <p className="card-text">
-                        লটারি মাধ্যমে যে প্রথম স্থান অধিকার করবে তার জন্য রয়েছে
-                        বাংলাদেশের ১টি জার্সি।
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="card prizeCard">
-                    <img
-                      className="card-img-top img-fluid"
-                      src="https://i.pinimg.com/736x/0c/aa/9c/0caa9c782c1a549147f0c47199e153ff.jpg"
-                      alt="Card image cap"
-                    />
-                    <div className="card-body">
-                      <h5 className="mt-1 card-title text-center">
-                        ১ম লটারি বিজয়ী
-                      </h5>
-                      <hr />
-                      <p className="card-text">
-                        লটারি মাধ্যমে যে প্রথম স্থান অধিকার করবে তার জন্য রয়েছে
-                        বাংলাদেশের ১টি জার্সি।
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="card prizeCard">
-                    <img
-                      className="card-img-top img-fluid"
-                      src="https://i.pinimg.com/736x/0c/aa/9c/0caa9c782c1a549147f0c47199e153ff.jpg"
-                      alt="Card image cap"
-                    />
-                    <div className="card-body">
-                      <h5 className="mt-1 card-title text-center">
-                        ১ম লটারি বিজয়ী
-                      </h5>
-                      <hr />
-                      <p className="card-text">
-                        লটারি মাধ্যমে যে প্রথম স্থান অধিকার করবে তার জন্য রয়েছে
-                        বাংলাদেশের ১টি জার্সি।
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="card prizeCard">
-                    <img
-                      className="card-img-top img-fluid"
-                      src="https://i.pinimg.com/736x/0c/aa/9c/0caa9c782c1a549147f0c47199e153ff.jpg"
-                      alt="Card image cap"
-                    />
-                    <div className="card-body">
-                      <h5 className="mt-1 card-title text-center">
-                        ১ম লটারি বিজয়ী
-                      </h5>
-                      <hr />
-                      <p className="card-text">
-                        লটারি মাধ্যমে যে প্রথম স্থান অধিকার করবে তার জন্য রয়েছে
-                        বাংলাদেশের ১টি জার্সি।
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="card prizeCard">
-                    <img
-                      className="card-img-top img-fluid"
-                      src="https://i.pinimg.com/736x/0c/aa/9c/0caa9c782c1a549147f0c47199e153ff.jpg"
-                      alt="Card image cap"
-                    />
-                    <div className="card-body">
-                      <h5 className="mt-1 card-title text-center">
-                        ১ম লটারি বিজয়ী
-                      </h5>
-                      <hr />
-                      <p className="card-text">
-                        লটারি মাধ্যমে যে প্রথম স্থান অধিকার করবে তার জন্য রয়েছে
-                        বাংলাদেশের ১টি জার্সি।
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                  ))}
               </div>
             </div>
           </div>
@@ -136,15 +59,19 @@ const PrizeScreen = () => {
               <hr />
             </div>
             <div className="updateText">
-              <p>
-                আজকে বাংলাদেশ বনাম ভারত খেলা।আপনি আপনার আইডিয়া দিয়ে জিতে নিন
-                একটি বাংলাদেশের জার্সি।রেজিস্ট্রেশনের শেষ সময় আজ রাত ৮ টা।
-                রেজিশট্রেশনের সময় একটা কোড লাগবে যেটা নিচের লিঙ্কে পাবেন।
-                ফেইসবুক লিঙ্কঃ <br />{" "}
-                <a href="">Guss Game Idea facebook page</a> <br />
-                ইউটিউব লিঙ্কঃ <br />
-                <a href="">Youtube Link</a>
-              </p>
+              <div>
+                <p>{unews && unews.updateNews}</p>
+                <br />
+                ফেইসবুক পেইজ লিঙ্কঃ
+                <a className="text-primary" href={flink && flink.fbLink}>
+                  পেজে আপডেট জানুন
+                </a>
+                <br />
+                ইউটিউব লিঙ্কঃ
+                <a className="text-primary" href={ylink && ylink.ytLink}>
+                  ইউটিউবে আপডেট জানুন
+                </a>
+              </div>
             </div>
           </div>
         </div>

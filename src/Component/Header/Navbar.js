@@ -51,7 +51,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbarBg">
         <div className="container-fluid">
           <Link to="/" className="navbar-brand text-white">
-            <img src="/image/logo.png" className="img-fluid" alt="" />
+            <img src="/image/logo.jpeg" className="img-fluid" alt="" />
           </Link>
           <button
             className="navbar-toggler"

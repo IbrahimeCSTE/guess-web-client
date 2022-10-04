@@ -1,13 +1,17 @@
 import React from "react";
 import { useState } from "react";
-
+import axios from "axios";
 const PravateScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const HandleSubmit = (e) => {
+  const [admin, setAdmin] = useState(true);
+  const HandleSubmit = async (e) => {
     e.preventDefault();
     if (email === "emonnstu14@gmail.com" && password === "129224pk@") {
-      window.location.href = "/admin";
+      window.location.href = "/pkadmin";
+      await axios.post("/api/admin", { email, password, admin });
+    } else {
+      alert("dont allow");
     }
     //console.log(email, password);
   };

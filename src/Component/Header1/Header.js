@@ -1,41 +1,26 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { TypeAnimation } from "react-type-animation";
 const Header = () => {
-  let localTime = new Date();
-  let displayLocalTime = localTime.toLocaleTimeString();
-  let getHour = localTime.getHours();
-  let getMin = localTime.getMinutes();
-  let getSec = localTime.getSeconds();
-
-  const [time, setTime] = useState("");
-  const [stopDisTime, setStopDisTime] = useState(false);
-  const [clickBtn, setClickBtn] = useState(false);
+  const [link, setLink] = useState([]);
+  const [headerImg, setHeaderImg] = useState([]);
 
   useEffect(() => {
-    setInterval(() => {
-      localTime = new Date();
-      displayLocalTime = localTime.toLocaleTimeString();
-      setTime(displayLocalTime);
-      getHour = localTime.getHours();
-      getMin = localTime.getMinutes();
-      getSec = localTime.getSeconds();
-      // console.log(getHour, getMin, getSec);
-
-      // if () {
-      //   setClickBtn(true);
-      //   setStopDisTime(true);
-      //   console.log("timeup");
-      //   console.log(hourDiff, minDiff, secDiff);
-      // }
-    }, 1000);
+    const fetchData = async () => {
+      const { data } = await axios.get("/api/time-date");
+      setLink(data[data.length - 1]);
+      const res = await axios.get("/api/header-img");
+      setHeaderImg(res.data[res.data.length - 1]);
+    };
+    fetchData();
   }, []);
   return (
     <div>
       <div className="headerImg">
         <div className="card  text-bg-dark">
           <img
-            src="image/cover1.jpg"
+            src={headerImg ? headerImg.imgUrl : "image/cover1.jpg"}
             className="card-img img-fluid"
             alt="..."
           />
@@ -55,27 +40,30 @@ const Header = () => {
               />
               <div className="showTime justify-content-center d-flex text-dark text-center">
                 <div className="displayTime">
-                  <h2>{stopDisTime ? "00:00:00" : <h2>{time}</h2>}</h2>
+                  <h2>
+                    {" "}
+                    {link ? link.hour : "00"}:{link ? link.min : "00"}:
+                    {link ? link.sec : "00"} {link ? link.ampm : ""}
+                  </h2>
+                  <h6>
+                    {" "}
+                    {link ? link.date : ""}/{link ? link.month : ""}/
+                    {link ? link.year : ""}
+                  </h6>
                 </div>
               </div>
 
               <div className="d-flex justify-content-center">
                 <div>
-                  {clickBtn ? (
-                    <button className="btn btn-danger my-2" disabled>
-                      এখানে ক্লিক করুন
-                    </button>
-                  ) : (
-                    <button className="btn btn-danger my-2">
-                      <Link
-                        className="text-white text-decoration-none"
-                        to="/own-idea"
-                      >
-                        {" "}
-                        এখানে ক্লিক করুন
-                      </Link>
-                    </button>
-                  )}
+                  <button className="btn btn-danger my-2">
+                    <Link
+                      className="text-white text-decoration-none"
+                      to="/own-idea"
+                    >
+                      {" "}
+                      রেজিস্ট্রেশন করুন ফ্রি
+                    </Link>
+                  </button>
                 </div>
 
                 <div className="spinner-grow spinerColor" role="status">

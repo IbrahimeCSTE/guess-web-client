@@ -113,6 +113,22 @@ i,a{
   margin: 5px 0px 5px 20px;
 } */
 
+/* Admin navbar */
+.adminNav{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.adminNav a{
+  text-decoration: none;
+  color: white;
+}
+
+/* dynamic text */
+.dynamicText{
+  background-color: black;
+  color: white;
+}
 
 @media only screen and (max-width:662px) {
   .subEmail{
@@ -131,5 +147,10 @@ i,a{
   .PrizeAndUpdate{
     display: flex;
     flex-direction: column-reverse;
+  }
+  .adminNav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
