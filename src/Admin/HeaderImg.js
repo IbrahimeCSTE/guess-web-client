@@ -101,7 +101,7 @@ const HeaderImg = () => {
             </tr>
           </thead>
           <tbody>
-            {link &&
+            {link.length > 0 &&
               link.map((item, idx) => (
                 <tr key={idx}>
                   <td>{item.imgUrl}</td>

@@ -14,7 +14,7 @@ const WinnerScreen = () => {
     };
     fetchData();
   }, []);
-  console.log(winnerId);
+  // console.log(winnerId);
   return (
     <div className="container text-center my-5">
       <div className="cardHeader">
@@ -23,7 +23,7 @@ const WinnerScreen = () => {
         <hr />
       </div>
       <div className="Winners card winnerCard p-4">
-        {winnerId ? (
+        {winnerId.length > 0 ? (
           winnerId.map((res, idx) => (
             <div key={idx} className="card my-2">
               <div className="winnerPerson row">

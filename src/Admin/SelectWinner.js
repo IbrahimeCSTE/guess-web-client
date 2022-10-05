@@ -72,7 +72,7 @@ const SelectWinner = () => {
         <ToastContainer />
       </div>
       <div className="Winners card winnerCard p-4">
-        {winnerId &&
+        {winnerId.length > 0 &&
           winnerId.map((res, idx) => (
             <div key={idx} className="card my-2">
               <div className="winnerPerson">

@@ -18,8 +18,8 @@ const NoticeScreen = () => {
           <h3 className="text-center">গুরুত্বপূর্ণ তথ্য</h3>
         </div>
         <div className="card-body">
-          {noticeData &&
-            noticeData?.map((item, idx) => (
+          {noticeData.length > 0 &&
+            noticeData.map((item, idx) => (
               <div key={idx} className="card eCnoticardPoint p-4">
                 <h5>{item.notice}</h5>
               </div>

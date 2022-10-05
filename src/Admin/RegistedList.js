@@ -76,7 +76,7 @@ const RegistedList = () => {
               </tr>
             </thead>
             <tbody>
-              {link1 &&
+              {link1.length > 0 &&
                 link1.map((item, idx) => (
                   <tr key={idx}>
                     <td>
@@ -115,7 +115,7 @@ const RegistedList = () => {
             </tr>
           </thead>
           <tbody>
-            {link &&
+            {link.length > 0 &&
               link.map((item, idx) => (
                 <tr key={idx}>
                   <td>{item.name}</td>

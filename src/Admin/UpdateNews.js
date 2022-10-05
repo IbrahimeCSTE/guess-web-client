@@ -74,7 +74,7 @@ const UpdateNews = () => {
             </tr>
           </thead>
           <tbody>
-            {getData &&
+            {getData.length > 0 &&
               getData.map((item, idx) => (
                 <tr key={idx}>
                   <td>{item.updateNews}</td>

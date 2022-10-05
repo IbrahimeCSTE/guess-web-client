@@ -29,7 +29,7 @@ const PrizeScreen = () => {
             </div>
             <div className="card-body">
               <div className="row">
-                {winnerPrize &&
+                {winnerPrize.length > 0 &&
                   winnerPrize.map((item, idx) => (
                     <div key={idx} className="col-md-4">
                       <div className="card prizeCard">
