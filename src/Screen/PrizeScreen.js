@@ -7,9 +7,22 @@ const PrizeScreen = () => {
   const [winnerPrize, setWinnerPrize] = useState([]);
 
   useEffect(() => {
+    const prizeItem = [
+      {
+        imgUrl:
+          "https://thumbs.dreamstime.com/b/welcome-poster-spectrum-brush-strokes-white-background-colorful-gradient-brush-design-vector-paper-illustration-r-welcome-125370796.jpg",
+        winnerNo: "Welcome Everybody",
+        prize: "Registration Now",
+      },
+    ];
     const fetchData = async () => {
       const winnerPrizeDetails = await axios.get("/api/winner-details");
-      setWinnerPrize(winnerPrizeDetails.data);
+      console.log(winnerPrizeDetails.data);
+      if (winnerPrizeDetails.data.length > 0) {
+        setWinnerPrize(winnerPrizeDetails.data);
+      } else {
+        setWinnerPrize(prizeItem);
+      }
       const { data } = await axios.get("/api/update-news");
       setuNews(data[data.length - 1]);
       const res1 = await axios.get("/api/fb-link");
@@ -19,6 +32,7 @@ const PrizeScreen = () => {
     };
     fetchData();
   }, []);
+  console.log(winnerPrize);
   return (
     <div className="container my-4">
       <div className="row PrizeAndUpdate">
