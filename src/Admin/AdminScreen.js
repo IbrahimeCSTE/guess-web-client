@@ -6,6 +6,7 @@ import AdminNav from "./AdminNav";
 const AdminScreen = () => {
   const [admin, setAdmin] = useState(false);
   const handleLogout = async () => {
+    window.location.href = "/private";
     await axios.post("/api/admin", { admin });
   };
   return (
