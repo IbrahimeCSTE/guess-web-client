@@ -19,7 +19,7 @@ const NoticeScreen = () => {
         </div>
         <div className="card-body">
           {noticeData &&
-            noticeData.map((item, idx) => (
+            noticeData?.map((item, idx) => (
               <div key={idx} className="card eCnoticardPoint p-4">
                 <h5>{item.notice}</h5>
               </div>
