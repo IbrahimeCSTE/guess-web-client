@@ -4,7 +4,7 @@ const PrizeScreen = () => {
   const [unews, setuNews] = useState([]);
   const [flink, setfLink] = useState([]);
   const [ylink, setyLink] = useState([]);
-  const [winnerPrize, setWinnerPrize] = useState([]);
+  const [winnerprize, setWinnerPrize] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,8 +29,8 @@ const PrizeScreen = () => {
             </div>
             <div className="card-body">
               <div className="row">
-                {winnerPrize.length > 0 ? (
-                  winnerPrize.map((item, idx) => (
+                {winnerprize.length > 0 ? (
+                  winnerprize.map((item, idx) => (
                     <div key={idx} className="col-md-4">
                       <div className="card prizeCard">
                         <img
