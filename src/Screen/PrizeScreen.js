@@ -19,7 +19,6 @@ const PrizeScreen = () => {
     };
     fetchData();
   }, []);
-  console.log(winnerPrize);
   return (
     <div className="container my-4">
       <div className="row PrizeAndUpdate">
@@ -30,7 +29,7 @@ const PrizeScreen = () => {
             </div>
             <div className="card-body">
               <div className="row">
-                {winnerPrize.length > 0 &&
+                {winnerPrize.length > 0 ? (
                   winnerPrize.map((item, idx) => (
                     <div key={idx} className="col-md-4">
                       <div className="card prizeCard">
@@ -48,7 +47,12 @@ const PrizeScreen = () => {
                         </div>
                       </div>
                     </div>
-                  ))}
+                  ))
+                ) : (
+                  <div className="spinner-border text-danger" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                  </div>
+                )}
               </div>
             </div>
           </div>
