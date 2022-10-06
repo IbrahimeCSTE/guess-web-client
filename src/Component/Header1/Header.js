@@ -8,9 +8,11 @@ const Header = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/time-date");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/time-date"
+      );
       setLink(data[data.length - 1]);
-      const res = await axios.get("/api/header-img");
+      const res = await axios.get("https://server.kajitbe.com/api/header-img");
       setHeaderImg(res.data[res.data.length - 1]);
     };
     fetchData();
