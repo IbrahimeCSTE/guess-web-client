@@ -75,7 +75,7 @@ function App() {
             <HeaderImg />
           </PrivateRoute>
 
-          <Route component={ErrorScreen} />
+          <Route path="*" component={ErrorScreen} />
         </Switch>
       </Router>
     </div>
