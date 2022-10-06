@@ -9,11 +9,15 @@ const SubNav = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/fb-link");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/fb-link"
+      );
       setfLink(data[data.length - 1]);
-      const res = await axios.get("/api/yt-link");
+      const res = await axios.get("https://server.kajitbe.com/api/yt-link");
       setyLink(res.data[data.length - 1]);
-      const res2 = await axios.get("/api/mobile-email");
+      const res2 = await axios.get(
+        "https://server.kajitbe.com/api/mobile-email"
+      );
       setMobEmail(res2.data[data.length - 1]);
     };
     fetchData();

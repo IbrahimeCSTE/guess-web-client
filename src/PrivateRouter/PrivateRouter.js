@@ -7,7 +7,7 @@ const PrivateRoute = ({ children, ...rest }) => {
   const [auth, setAuth] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/admin");
+      const { data } = await axios.get("https://server.kajitbe.com/api/admin");
       setAuth(data[0].admin);
     };
     fetchData();

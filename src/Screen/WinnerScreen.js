@@ -7,9 +7,11 @@ const WinnerScreen = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/idea");
+      const { data } = await axios.get("https://server.kajitbe.com/api/idea");
       setAllIdea(data);
-      const res = await axios.get("/api/winner-result");
+      const res = await axios.get(
+        "https://server.kajitbe.com/api/winner-result"
+      );
       setWinnerId(res.data);
     };
     fetchData();
