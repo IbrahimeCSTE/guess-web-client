@@ -7,17 +7,17 @@ const PrizeScreen = () => {
   const [winnerprize, setWinnerPrize] = useState([]);
 
   useEffect(() => {
-    // const fetchData = async () => {
-    //   const winnerPrizeDetails = await axios.get("/api/winner-details");
-    //   setWinnerPrize(winnerPrizeDetails.data);
-    //   const { data } = await axios.get("/api/update-news");
-    //   setuNews(data[data.length - 1]);
-    //   const res1 = await axios.get("/api/fb-link");
-    //   setfLink(res1.data[data.length - 1]);
-    //   const res = await axios.get("/api/yt-link");
-    //   setyLink(res.data[data.length - 1]);
-    // };
-    // fetchData();
+    const fetchData = async () => {
+      const winnerPrizeDetails = await axios.get("/api/winner-details");
+      setWinnerPrize(winnerPrizeDetails.data);
+      const { data } = await axios.get("/api/update-news");
+      setuNews(data[data.length - 1]);
+      const res1 = await axios.get("/api/fb-link");
+      setfLink(res1.data[data.length - 1]);
+      const res = await axios.get("/api/yt-link");
+      setyLink(res.data[data.length - 1]);
+    };
+    fetchData();
   }, []);
   return (
     <div className="container my-4">
