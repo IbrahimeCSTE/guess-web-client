@@ -16,15 +16,18 @@ const TimeUp = () => {
   const [link, setLink] = useState([]);
 
   const addTimeDate = async () => {
-    const { data } = await axios.post("/api/time-date", {
-      hour,
-      min,
-      sec,
-      ampm,
-      date,
-      month,
-      year,
-    });
+    const { data } = await axios.post(
+      "https://server.kajitbe.com/api/time-date",
+      {
+        hour,
+        min,
+        sec,
+        ampm,
+        date,
+        month,
+        year,
+      }
+    );
     toast(data);
     setHour("");
     setMin("");
@@ -36,7 +39,9 @@ const TimeUp = () => {
   };
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/time-date");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/time-date"
+      );
       setLink(data);
     };
     fetchData();
@@ -44,7 +49,9 @@ const TimeUp = () => {
 
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/time-date/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/time-date/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {

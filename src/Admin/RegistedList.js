@@ -15,19 +15,24 @@ const RegistedList = () => {
     e.preventDefault();
     console.log(team1, team2);
     if (team1 && team2) {
-      const { data } = await axios.post("/api/team-list", { team1, team2 });
+      const { data } = await axios.post(
+        "https://server.kajitbe.com/api/team-list",
+        { team1, team2 }
+      );
       toast(data);
     } else {
       console.log("missing data!");
     }
   };
   const deleteElement = async () => {
-    const { data } = await axios.delete("/api/idea");
+    const { data } = await axios.delete("https://server.kajitbe.com/api/idea");
     toast(data);
   };
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/team-list/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/team-list/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {
@@ -37,9 +42,9 @@ const RegistedList = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/idea");
+      const { data } = await axios.get("https://server.kajitbe.com/api/idea");
       setLink(data);
-      const res = await axios.get("/api/team-list");
+      const res = await axios.get("https://server.kajitbe.com/api/team-list");
       setLink1(res.data);
       console.log(res.data);
     };

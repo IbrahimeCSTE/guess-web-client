@@ -10,7 +10,10 @@ const Fb = () => {
   const [link, setLink] = useState([]);
   const handleFb = async () => {
     try {
-      const { data } = await axios.post("/api/fb-link", { fbLink });
+      const { data } = await axios.post(
+        "https://server.kajitbe.com/api/fb-link",
+        { fbLink }
+      );
       toast(data);
       // console.log(data);
     } catch (err) {
@@ -22,7 +25,9 @@ const Fb = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/fb-link");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/fb-link"
+      );
       setLink(data);
     };
     fetchData();
@@ -33,7 +38,9 @@ const Fb = () => {
   };
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/fb-link/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/fb-link/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {

@@ -21,9 +21,12 @@ const SelectWinner = () => {
         let found = RandomNo.includes(winnerIdx);
         if (!found) {
           // console.log(typeof mobile);
-          const { data } = await axios.post("/api/winner-result", {
-            winnerIdx,
-          });
+          const { data } = await axios.post(
+            "https://server.kajitbe.com/api/winner-result",
+            {
+              winnerIdx,
+            }
+          );
           toast(data);
           RandomNo.push(winnerIdx);
         }
@@ -35,16 +38,20 @@ const SelectWinner = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/idea");
+      const { data } = await axios.get("https://server.kajitbe.com/api/idea");
       setAllIdea(data);
-      const res = await axios.get("/api/winner-result");
+      const res = await axios.get(
+        "https://server.kajitbe.com/api/winner-result"
+      );
       setWinnerId(res.data);
     };
     fetchData();
   }, []);
 
   const deleteWinner = async (id) => {
-    const { data } = await axios.delete(`/api/winner-result/${id}`);
+    const { data } = await axios.delete(
+      `https://server.kajitbe.com/api/winner-result/${id}`
+    );
     toast(data);
   };
 

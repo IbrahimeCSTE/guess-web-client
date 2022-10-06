@@ -10,7 +10,10 @@ const Notice = () => {
   const [link, setLink] = useState([]);
   const handleNotice = async () => {
     try {
-      const { data } = await axios.post("/api/notice", { notice });
+      const { data } = await axios.post(
+        "https://server.kajitbe.com/api/notice",
+        { notice }
+      );
       toast(data);
       // console.log(data);
     } catch (err) {
@@ -22,7 +25,7 @@ const Notice = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/notice");
+      const { data } = await axios.get("https://server.kajitbe.com/api/notice");
       setLink(data);
     };
     fetchData();
@@ -33,7 +36,9 @@ const Notice = () => {
   };
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/notice/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/notice/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {

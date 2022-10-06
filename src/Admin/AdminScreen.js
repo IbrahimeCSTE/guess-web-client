@@ -7,7 +7,7 @@ const AdminScreen = () => {
   const [admin, setAdmin] = useState(false);
   const handleLogout = async () => {
     window.location.href = "/private";
-    await axios.post("/api/admin", { admin });
+    await axios.post("https://server.kajitbe.com/api/admin", { admin });
   };
   return (
     <div className="container my-5">

@@ -9,20 +9,27 @@ const DynamicHadle = () => {
   const [link, setLink] = useState([]);
 
   const addDynamic = async () => {
-    const { data } = await axios.post("/api/dynamic-text", { text });
+    const { data } = await axios.post(
+      "https://server.kajitbe.com/api/dynamic-text",
+      { text }
+    );
     toast(data);
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/dynamic-text");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/dynamic-text"
+      );
       setLink(data);
     };
     fetchData();
   }, []);
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/dynamic-text/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/dynamic-text/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {

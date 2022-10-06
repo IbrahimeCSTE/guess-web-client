@@ -11,7 +11,10 @@ const MobEmail = () => {
 
   const addMobEmail = async () => {
     try {
-      const { data } = await axios.post("/api/mobile-email", { mobile, email });
+      const { data } = await axios.post(
+        "https://server.kajitbe.com/api/mobile-email",
+        { mobile, email }
+      );
       toast(data);
       // console.log(data);
     } catch (err) {
@@ -21,7 +24,9 @@ const MobEmail = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/mobile-email");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/mobile-email"
+      );
       setLink(data);
     };
     fetchData();
@@ -29,7 +34,9 @@ const MobEmail = () => {
 
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/mobile-email/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/mobile-email/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {

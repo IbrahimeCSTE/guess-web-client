@@ -11,7 +11,10 @@ const UpdateNews = () => {
 
   const handleNews = async () => {
     try {
-      const { data } = await axios.post("/api/update-news", { updateNews });
+      const { data } = await axios.post(
+        "https://server.kajitbe.com/api/update-news",
+        { updateNews }
+      );
       toast(data);
       // console.log(data);
     } catch (err) {
@@ -20,7 +23,9 @@ const UpdateNews = () => {
   };
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/update-news");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/update-news"
+      );
       setGetData(data);
     };
     fetchData();
@@ -31,7 +36,9 @@ const UpdateNews = () => {
   };
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/update-news/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/update-news/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {

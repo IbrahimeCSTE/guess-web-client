@@ -36,11 +36,14 @@ const Winner = () => {
 
   const addWinnerDetails = async () => {
     //console.log(imgUrl);
-    const { data } = await axios.post("/api/winner-details", {
-      imgUrl,
-      winnerNo,
-      prize,
-    });
+    const { data } = await axios.post(
+      "https://server.kajitbe.com/api/winner-details",
+      {
+        imgUrl,
+        winnerNo,
+        prize,
+      }
+    );
     //console.log(data);
     toast(data);
     setWinnerNo("");
@@ -49,7 +52,9 @@ const Winner = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/winner-details");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/winner-details"
+      );
       setLink(data);
     };
     fetchData();
@@ -57,7 +62,9 @@ const Winner = () => {
 
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/winner-details/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/winner-details/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {

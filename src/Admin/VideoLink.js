@@ -9,7 +9,10 @@ const VideoLink = () => {
   const [link, setLink] = useState([]);
   const handleVideo = async () => {
     try {
-      const { data } = await axios.post("/api/video-link", { videoLink });
+      const { data } = await axios.post(
+        "https://server.kajitbe.com/api/video-link",
+        { videoLink }
+      );
       toast(data);
       // console.log(data);
     } catch (err) {
@@ -21,7 +24,9 @@ const VideoLink = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/video-link");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/video-link"
+      );
       setLink(data);
     };
     fetchData();
@@ -29,7 +34,9 @@ const VideoLink = () => {
 
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/video-link/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/video-link/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {

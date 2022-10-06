@@ -11,7 +11,10 @@ const Yt = () => {
 
   const handleYt = async () => {
     try {
-      const { data } = await axios.post("/api/yt-link", { ytLink });
+      const { data } = await axios.post(
+        "https://server.kajitbe.com/api/yt-link",
+        { ytLink }
+      );
       toast(data);
       // console.log(data);
     } catch (err) {
@@ -21,7 +24,9 @@ const Yt = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/yt-link");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/yt-link"
+      );
       setLink(data);
     };
     fetchData();
@@ -29,7 +34,9 @@ const Yt = () => {
 
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/yt-link/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/yt-link/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {

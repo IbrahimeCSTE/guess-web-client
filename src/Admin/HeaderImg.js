@@ -33,16 +33,21 @@ const HeaderImg = () => {
 
   const addHeaderImgDetails = async () => {
     //console.log(imgUrl);
-    const { data } = await axios.post("/api/header-img", {
-      imgUrl,
-    });
+    const { data } = await axios.post(
+      "https://server.kajitbe.com/api/header-img",
+      {
+        imgUrl,
+      }
+    );
     //console.log(data);
     toast(data);
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data } = await axios.get("/api/header-img");
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/header-img"
+      );
       setLink(data);
     };
     fetchData();
@@ -50,7 +55,9 @@ const HeaderImg = () => {
 
   const deleteBtn = async (id) => {
     try {
-      const { data } = await axios.delete(`/api/header-img/${id}`);
+      const { data } = await axios.delete(
+        `https://server.kajitbe.com/api/header-img/${id}`
+      );
       toast(data);
       // console.log(data);
     } catch (err) {
