@@ -51,13 +51,13 @@ const IdeaScreen = () => {
 
   useEffect(() => {
     window.document.title = "Idea";
-    const fetchData = async () => {
-      const res = await axios.get("/api/team-list");
-      setLink1(res.data[res.data.length - 1]);
-      const res2 = await axios.get("/api/video-link");
-      setLink2(res2.data[res2.data.length - 1]);
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const res = await axios.get("/api/team-list");
+    //   setLink1(res.data[res.data.length - 1]);
+    //   const res2 = await axios.get("/api/video-link");
+    //   setLink2(res2.data[res2.data.length - 1]);
+    // };
+    // fetchData();
   }, []);
 
   return (

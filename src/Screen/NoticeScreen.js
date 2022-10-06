@@ -5,11 +5,11 @@ const NoticeScreen = () => {
   const [noticeData, setNoticeData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get("/api/notice");
-      setNoticeData(data);
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const { data } = await axios.get("/api/notice");
+    //   setNoticeData(data);
+    // };
+    // fetchData();
   }, []);
   return (
     <div className="container">

@@ -6,13 +6,13 @@ const WinnerScreen = () => {
   const [winnerId, setWinnerId] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get("/api/idea");
-      setAllIdea(data);
-      const res = await axios.get("/api/winner-result");
-      setWinnerId(res.data);
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const { data } = await axios.get("/api/idea");
+    //   setAllIdea(data);
+    //   const res = await axios.get("/api/winner-result");
+    //   setWinnerId(res.data);
+    // };
+    // fetchData();
   }, []);
   // console.log(winnerId);
   return (

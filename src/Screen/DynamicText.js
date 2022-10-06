@@ -4,11 +4,11 @@ import React, { useEffect, useState } from "react";
 const DynamicText = () => {
   const [link, setLink] = useState([]);
   useEffect(() => {
-    const fetchData = async () => {
-      const { data } = await axios.get("/api/dynamic-text");
-      setLink(data[data.length - 1]);
-    };
-    fetchData();
+    // const fetchData = async () => {
+    //   const { data } = await axios.get("/api/dynamic-text");
+    //   setLink(data[data.length - 1]);
+    // };
+    // fetchData();
   }, []);
   return (
     <div className=" dynamicText">
