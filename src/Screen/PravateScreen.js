@@ -10,7 +10,11 @@ const PravateScreen = () => {
     e.preventDefault();
     if (email === "emonnstu14@gmail.com" && password === "129224pk@") {
       window.location.href = "/pkadmin";
-      await axios.post("/api/admin", { email, password, admin });
+      await axios.post("https://server.kajitbe.com/api/admin", {
+        email,
+        password,
+        admin,
+      });
     } else {
       alert("dont allow");
     }
