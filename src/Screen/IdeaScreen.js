@@ -64,8 +64,8 @@ const IdeaScreen = () => {
     <div className="container my-5">
       <div className="card bg-danger p-4 worrning">
         <h4 className="text-center text-white">
-          খেলা শুরু হওয়ার পর রেজিস্ট্রেশন করা যাবে নাহ।তাই খেলা শুরু হওয়ার আগের
-          আপনার আইডিয়া দিয়ে জিতে নিন পুরুষ্কার
+          খেলা শুরু হওয়ার পর রেজিস্ট্রেশন করা যাবে নাহ।তাই খেলা শুরু হওয়ার আগেই
+          আপনার আইডিয়া দিয়ে জিতে নিন আকর্ষনীয় পুরুষ্কার।
         </h4>
       </div>
       <div className="text-center mt-3 ">

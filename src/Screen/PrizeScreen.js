@@ -17,12 +17,14 @@ const PrizeScreen = () => {
       );
       setuNews(data[data.length - 1]);
       const res1 = await axios.get("https://server.kajitbe.com/api/fb-link");
-      setfLink(res1.data[data.length - 1]);
+      setfLink(res1.data[res1.data.length - 1]);
+      console.log(res1.data[0]);
       const res = await axios.get("https://server.kajitbe.com/api/yt-link");
-      setyLink(res.data[data.length - 1]);
+      setyLink(res.data[res.data.length - 1]);
     };
     fetchData();
   }, []);
+  console.log(flink, ylink);
   return (
     <div className="container my-4">
       <div className="row PrizeAndUpdate">
@@ -61,7 +63,7 @@ const PrizeScreen = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-3">
+        <div className="col-md-3 my-3">
           <div className="card p-2 bg-dark text-white">
             <div className="text-center">
               <h5>আপডেট জানুন</h5>
@@ -72,14 +74,24 @@ const PrizeScreen = () => {
                 <p>{unews && unews.updateNews}</p>
                 <br />
                 ফেইসবুক পেইজ লিঙ্কঃ
-                <a className="text-primary" href={flink && flink.fbLink}>
-                  পেজে আপডেট জানুন
-                </a>
+                <button className="btn pt-3 form-control fbBtn">
+                  <h6>
+                    <i className="fab mx-1 fa-facebook"></i>
+                    <a className="text-white" href={flink && flink.fbLink}>
+                      পেজে আপডেট জানুন
+                    </a>
+                  </h6>
+                </button>
                 <br />
                 ইউটিউব লিঙ্কঃ
-                <a className="text-primary" href={ylink && ylink.ytLink}>
-                  ইউটিউবে আপডেট জানুন
-                </a>
+                <button className="btn pt-3 my-2 form-control ytBtn">
+                  <h6>
+                    <i className="fab mx-1 fa-youtube"></i>
+                    <a className="text-white" href={ylink && ylink.ytLink}>
+                      ইউটিউবে আপডেট জানুন
+                    </a>
+                  </h6>
+                </button>
               </div>
             </div>
           </div>

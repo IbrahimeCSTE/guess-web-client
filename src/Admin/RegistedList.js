@@ -46,7 +46,6 @@ const RegistedList = () => {
       setLink(data);
       const res = await axios.get("https://server.kajitbe.com/api/team-list");
       setLink1(res.data);
-      console.log(res.data);
     };
     fetchData();
   }, []);

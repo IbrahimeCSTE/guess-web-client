@@ -18,7 +18,7 @@ const DynamicText = () => {
         behavior="scroll"
         scrollamount="5"
         width="100%"
-        direction="right"
+        direction="left"
         height="auto"
       >
         {link ? link.text : "Welcome"}

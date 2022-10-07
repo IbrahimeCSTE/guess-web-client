@@ -21,7 +21,7 @@ const WinnerScreen = () => {
     <div className="container text-center my-5">
       <div className="cardHeader">
         <i className="fas winnerTophy  fa-trophy"></i>
-        <h3>Prize Winner</h3>
+        <h3>প্রাইজ উইনার</h3>
         <hr />
       </div>
       <div className="Winners card winnerCard p-4">
@@ -53,7 +53,8 @@ const WinnerScreen = () => {
           ))
         ) : (
           <h4 className="text-white text-center">
-            বিজয়ী ফলাফল প্রকাশ করে হয়নি।
+            বিজয়ী ফলাফল প্রকাশ করে হয়নি।খেলা শেষ হওয়ার ৩০ মিনিটের ভিতর ফলাফল
+            প্রকাশ করা হবে।ধন্যবাদ
           </h4>
         )}
       </div>

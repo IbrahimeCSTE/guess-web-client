@@ -9,6 +9,7 @@ body{
 }
 i,a{
   cursor: pointer;
+  text-decoration: none;
 }
 /* Sub navbar */
 .subNav{
@@ -129,6 +130,25 @@ i,a{
   background-color: black;
   color: white;
 }
+
+.fbBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1877f2;
+  color: white;
+}
+.ytBtn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(161, 29, 29);
+  color: white;
+}
+
+
+
+
 
 @media only screen and (max-width:662px) {
   .subEmail{
