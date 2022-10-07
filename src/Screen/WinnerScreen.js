@@ -6,6 +6,7 @@ const WinnerScreen = () => {
   const [winnerId, setWinnerId] = useState([]);
 
   useEffect(() => {
+    window.document.title = "/winner";
     const fetchData = async () => {
       const { data } = await axios.get("https://server.kajitbe.com/api/idea");
       setAllIdea(data);

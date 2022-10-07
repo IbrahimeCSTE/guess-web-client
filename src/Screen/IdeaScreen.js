@@ -31,7 +31,7 @@ const IdeaScreen = () => {
   const HandleSubmit = async (e) => {
     e.preventDefault();
     console.log(name, mobile, email, zila, code, team);
-    const { data } = await axios.post("/api/idea", {
+    const { data } = await axios.post("https://server.kajitbe.com/api/idea", {
       name,
       mobile,
       email,

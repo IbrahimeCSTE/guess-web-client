@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import axios from "axios";
+import { useEffect } from "react";
 const PravateScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,6 +16,9 @@ const PravateScreen = () => {
     }
     //console.log(email, password);
   };
+  useEffect(() => {
+    window.document.title = "/private";
+  }, []);
   return (
     <div className="container my-5">
       <div className="card p-4">
