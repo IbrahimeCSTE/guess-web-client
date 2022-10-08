@@ -74,8 +74,6 @@ function App() {
           <PrivateRoute exact path="/header-img">
             <HeaderImg />
           </PrivateRoute>
-
-          <Route path="*" component={ErrorScreen} />
         </Switch>
       </Router>
     </div>
