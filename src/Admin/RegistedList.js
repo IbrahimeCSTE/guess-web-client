@@ -116,6 +116,8 @@ const RegistedList = () => {
               <th scope="col">Mobile</th>
               <th scope="col">Zila</th>
               <th scope="col">Team</th>
+              <th scope="col">email</th>
+              <th scope="col">Code</th>
             </tr>
           </thead>
           <tbody>
@@ -126,6 +128,8 @@ const RegistedList = () => {
                   <td>{item.mobile}</td>
                   <td>{item.zila}</td>
                   <td>{item.team}</td>
+                  <td>{item.email}</td>
+                  <td>{item.code}</td>
                 </tr>
               ))}
           </tbody>

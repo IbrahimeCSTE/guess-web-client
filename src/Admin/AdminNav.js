@@ -6,6 +6,7 @@ const AdminNav = () => {
     <div>
       <div className="card p-2 bg-dark">
         <div className="adminNav">
+          <Link to="/news-manage">News</Link>
           <Link to="/update-news-manage">Update</Link>
           <Link to="/notice-manage">Notice</Link>
           <Link to="/time-manage">TimeUp </Link>

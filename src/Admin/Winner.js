@@ -26,7 +26,7 @@ const Winner = () => {
         "https://api.cloudinary.com/v1_1/ditdynru4/image/upload",
         data
       );
-      console.log(result?.data?.url);
+      // console.log(result?.data?.url);
       setImageUrl(result?.data?.url);
       setLoading(false);
     } catch (error) {

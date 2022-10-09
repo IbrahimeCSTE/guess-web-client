@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import PrizeScreen from "./PrizeScreen";
 const IdeaScreen = () => {
   const [next, setNext] = useState(true);
   const [showNextData, setShowNextData] = useState(false);
@@ -14,6 +15,9 @@ const IdeaScreen = () => {
   const [team, setWinner] = useState("");
   const [link1, setLink1] = useState([]);
   const [link2, setLink2] = useState([]);
+  const [unews, setuNews] = useState([]);
+  const [flink, setfLink] = useState([]);
+  const [ylink, setyLink] = useState([]);
 
   const HandleNextBtn = (e) => {
     e.preventDefault();
@@ -52,10 +56,19 @@ const IdeaScreen = () => {
   useEffect(() => {
     window.document.title = "Idea";
     const fetchData = async () => {
-      const res = await axios.get("https://server.kajitbe.com/api/team-list");
-      setLink1(res.data[res.data.length - 1]);
+      const res3 = await axios.get("https://server.kajitbe.com/api/team-list");
+      setLink1(res3.data[res3.data.length - 1]);
       const res2 = await axios.get("https://server.kajitbe.com/api/video-link");
       setLink2(res2.data[res2.data.length - 1]);
+      const { data } = await axios.get(
+        "https://server.kajitbe.com/api/update-news"
+      );
+      setuNews(data[data.length - 1]);
+      const res1 = await axios.get("https://server.kajitbe.com/api/fb-link");
+      setfLink(res1.data[res1.data.length - 1]);
+      // console.log(res1.data[0]);
+      const res = await axios.get("https://server.kajitbe.com/api/yt-link");
+      setyLink(res.data[res.data.length - 1]);
     };
     fetchData();
   }, []);
@@ -73,100 +86,157 @@ const IdeaScreen = () => {
         <hr />
       </div>
       <div>
-        <div className="card p-4">
-          <form onSubmit={HandleSubmit}>
-            <div>
-              {next && (
-                <div>
-                  <input
-                    value={name}
-                    type="text"
-                    onChange={(e) => setName(e.target.value)}
-                    className="form-control my-2"
-                    placeholder="আপনার নাম"
-                    required
-                  />
-                  <input
-                    type="number"
-                    value={mobile}
-                    onChange={(e) => setMobile(e.target.value)}
-                    className="form-control my-2"
-                    placeholder="আপনার মোবাইল নম্বর"
-                    required
-                  />
-                  <input
-                    value={email}
-                    type="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="form-control my-2"
-                    placeholder="আপনার ই-মেইল"
-                    required
-                  />
-                  <input
-                    value={zila}
-                    type="text"
-                    onChange={(e) => setDistic(e.target.value)}
-                    className="form-control my-2"
-                    placeholder="আপনার জেলা"
-                    required
-                  />
-                </div>
-              )}
-            </div>
-            <div className="my-3">
-              {showNextData && (
-                <div>
-                  <input
-                    value={code}
-                    type="text"
-                    onChange={(e) => setCode(e.target.value)}
-                    className="form-control mt-2"
-                    placeholder="ভিডিও কোড"
-                    required
-                  />
-                  <small className="mb-5">
-                    কোড পেতে এখানে{" "}
-                    <a href={link2 ? link2.videoLink : ""}>ক্লিক করুন</a>
-                  </small>
-                  <select
-                    value={team}
-                    className="form-select mt-4 mb-3"
-                    onChange={(e) => setWinner(e.target.value)}
-                    aria-label="Default select example"
-                    required
-                  >
-                    <option selected>জয়ীদল সিলেক্ট করুন</option>
-                    <option value={link1 ? link1.team1 : "প্রকাশ করা হয়নি "}>
-                      {link1 ? link1.team1 : "প্রকাশ করা হয়নি "}
-                    </option>
-                    <option value={link1 ? link1.team2 : "প্রকাশ করা হয়নি "}>
-                      {link1 ? link1.team2 : "প্রকাশ করা হয়নি "}
-                    </option>
-                  </select>
-                </div>
-              )}
-            </div>
-            <div className="nexPevBtn">
-              {!submitBtn ? (
-                <div className="btn2">
-                  <button
-                    onClick={(e) => HandleNextBtn(e)}
-                    className="btn 
+        <div className="row">
+          <div className="col-md-4 my-4">
+            <div className="row">
+              <div className="card p-4">
+                <h5>রেজিস্ট্রেশন ফর্ম</h5>
+                <form onSubmit={HandleSubmit}>
+                  <div>
+                    {next && (
+                      <div>
+                        <input
+                          value={name}
+                          type="text"
+                          onChange={(e) => setName(e.target.value)}
+                          className="form-control my-2"
+                          placeholder="আপনার নাম"
+                          required
+                        />
+                        <input
+                          type="number"
+                          value={mobile}
+                          onChange={(e) => setMobile(e.target.value)}
+                          className="form-control my-2"
+                          placeholder="আপনার মোবাইল নম্বর"
+                          required
+                        />
+                        <input
+                          value={email}
+                          type="email"
+                          onChange={(e) => setEmail(e.target.value)}
+                          className="form-control my-2"
+                          placeholder="আপনার ই-মেইল"
+                          required
+                        />
+                        <input
+                          value={zila}
+                          type="text"
+                          onChange={(e) => setDistic(e.target.value)}
+                          className="form-control my-2"
+                          placeholder="আপনার জেলা"
+                          required
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="my-3">
+                    {showNextData && (
+                      <div>
+                        <input
+                          value={code}
+                          type="text"
+                          onChange={(e) => setCode(e.target.value)}
+                          className="form-control mt-2"
+                          placeholder="ভিডিও কোড"
+                          required
+                        />
+                        <a href={link2 ? link2.videoLink : ""}>
+                          <small className="btn btn-info text-dark text-blod my-1">
+                            কোড পেতে এখানে ক্লিক করুন
+                          </small>
+                        </a>
+
+                        <select
+                          value={team}
+                          className="form-select mt-4 mb-3"
+                          onChange={(e) => setWinner(e.target.value)}
+                          aria-label="Default select example"
+                          required
+                        >
+                          <option selected>জয়ীদল সিলেক্ট করুন</option>
+                          <option
+                            value={link1 ? link1.team1 : "প্রকাশ করা হয়নি "}
+                          >
+                            {link1 ? link1.team1 : "প্রকাশ করা হয়নি "}
+                          </option>
+                          <option
+                            value={link1 ? link1.team2 : "প্রকাশ করা হয়নি "}
+                          >
+                            {link1 ? link1.team2 : "প্রকাশ করা হয়নি "}
+                          </option>
+                        </select>
+                      </div>
+                    )}
+                  </div>
+                  <div className="nexPevBtn">
+                    {!submitBtn ? (
+                      <div className="btn2">
+                        <button
+                          onClick={(e) => HandleNextBtn(e)}
+                          className="btn 
                    ml-5 btn-info form-control"
-                  >
-                    Next
-                  </button>
-                </div>
-              ) : (
-                <div className="btn2">
-                  <button type="submit" className="btn btn-danger">
-                    Submit
-                  </button>
-                  <ToastContainer />
-                </div>
-              )}
+                        >
+                          Next
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="btn2">
+                        <button type="submit" className="btn btn-danger">
+                          Submit
+                        </button>
+                        <ToastContainer />
+                      </div>
+                    )}
+                  </div>
+                </form>
+              </div>
             </div>
-          </form>
+            <div className="row">
+              <div className="col-md-12 my-3">
+                <div className="card p-2 bg-dark text-white">
+                  <div className="text-center">
+                    <h5>আপডেট জানুন</h5>
+                    <hr />
+                  </div>
+                  <div className="updateText">
+                    <div>
+                      <p>{unews && unews.updateNews}</p>
+                      <br />
+                      ফেইসবুক পেইজ লিঙ্কঃ
+                      <button className="btn pt-3 form-control fbBtn">
+                        <h6>
+                          <i className="fab mx-1 fa-facebook"></i>
+                          <a
+                            className="text-white"
+                            href={flink && flink.fbLink}
+                          >
+                            পেজে আপডেট জানুন
+                          </a>
+                        </h6>
+                      </button>
+                      <br />
+                      ইউটিউব লিঙ্কঃ
+                      <button className="btn pt-3 my-2 form-control ytBtn">
+                        <h6>
+                          <i className="fab mx-1 fa-youtube"></i>
+                          <a
+                            className="text-white"
+                            href={ylink && ylink.ytLink}
+                          >
+                            ইউটিউবে আপডেট জানুন
+                          </a>
+                        </h6>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="col-md-8">
+            <PrizeScreen />
+          </div>
         </div>
       </div>
     </div>

@@ -22,6 +22,8 @@ import SelectWinner from "./Admin/SelectWinner";
 import DynamicHadle from "./Admin/DynamicHadle";
 import HeaderImg from "./Admin/HeaderImg";
 import ErrorScreen from "./Screen/ErrorScreen";
+import Sports from "./Screen/Sports";
+import NewsManage from "./Admin/NewsManage";
 function App() {
   return (
     <div>
@@ -34,6 +36,7 @@ function App() {
           <Route exact path="/own-idea" component={IdeaScreen} />
           <Route exact path="/private" component={PravateScreen} />
           <Route exact path="/news" component={NewsScreen} />
+          <Route exact path="/sports" component={Sports} />
 
           <PrivateRoute exact path="/pkadmin">
             <AdminScreen />
@@ -74,6 +77,10 @@ function App() {
           <PrivateRoute exact path="/header-img">
             <HeaderImg />
           </PrivateRoute>
+          <PrivateRoute exact path="/news-manage">
+            <NewsManage />
+          </PrivateRoute>
+          <Route exact path="*" component={ErrorScreen} />
         </Switch>
       </Router>
     </div>
