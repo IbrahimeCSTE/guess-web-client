@@ -50,14 +50,20 @@ const Sports = () => {
                   <div key={idx} className="col-md-6 my-2 col-lg-4">
                     <Link to={`/sports/single-news/${item._id}`}>
                       <div className="card newsCard p-2">
-                        <img
-                          src={item.imgUrl}
-                          className="card-img-top img-fluid"
-                          alt="news"
-                        />
-                        <div className="card-body">
-                          <h5 className="newsTitle card-title">{item.title}</h5>
-                          <p className="card-text newsDes1">{item.des1}</p>
+                        <div className="newCardSmallDevice">
+                          <div className="newsCardImg">
+                            <img
+                              src={item.imgUrl}
+                              className="card-img-top img-fluid"
+                              alt="news"
+                            />
+                          </div>
+                          <div className=" mx-2 newsCardContent">
+                            <h5 className="newsTitle card-title">
+                              {item.title}
+                            </h5>
+                            <p className="card-text newsDes1">{item.des1}</p>
+                          </div>
                         </div>
                       </div>
                     </Link>
