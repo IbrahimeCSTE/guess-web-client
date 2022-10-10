@@ -24,6 +24,11 @@ import HeaderImg from "./Admin/HeaderImg";
 import ErrorScreen from "./Screen/ErrorScreen";
 import Sports from "./Screen/Sports";
 import NewsManage from "./Admin/NewsManage";
+import CricketSceen from "./Screen/CricketSceen";
+import FootballScreen from "./Screen/FootballScreen";
+import SingleNewsScreen from "./Screen/SingleNewsScreen";
+import TenisScreen from "./Screen/TenisScreen";
+import OtherGameScreen from "./Screen/OtherGameScreen";
 function App() {
   return (
     <div>
@@ -37,6 +42,15 @@ function App() {
           <Route exact path="/private" component={PravateScreen} />
           <Route exact path="/news" component={NewsScreen} />
           <Route exact path="/sports" component={Sports} />
+          <Route
+            exact
+            path="/sports/single-news/:id"
+            component={SingleNewsScreen}
+          />
+          <Route exact path="/sports/cricket" component={CricketSceen} />
+          <Route exact path="/sports/football" component={FootballScreen} />
+          <Route exact path="/sports/tenis" component={TenisScreen} />
+          <Route exact path="/sports/other" component={OtherGameScreen} />
 
           <PrivateRoute exact path="/pkadmin">
             <AdminScreen />

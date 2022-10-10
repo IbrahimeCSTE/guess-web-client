@@ -10,6 +10,7 @@ body{
 i,a{
   cursor: pointer;
   text-decoration: none;
+  
 }
 /* Sub navbar */
 .subNav{
@@ -153,12 +154,37 @@ i,a{
 .newsCard{
   cursor: pointer;
   border: 1px solid gray;
+  color: rgba(19, 18, 18, 0.792);
 }
 .newsCard img{
   max-height: 200px;
   min-height: 200px;
+  transition: transform 1s;
+}
+.newsCard img:hover{
+  transform: scale(0.95);
+  
+}
+.newsTitle:hover{
+  color: #016fff;
+}
+.newsTitle{
+  -webkit-line-clamp: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.newsDes1{
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
+.singleNewsImg{
+  width: 100%;
+  height: 400px;
+}
 
 @media only screen and (max-width:662px) {
   .subEmail{
@@ -186,5 +212,9 @@ i,a{
   .newsCard img{
     max-height: 150;
     min-height: 150px;
+  }
+  .singleNewsImg{
+    width: 100%;
+    height: 300px;
   }
 }
