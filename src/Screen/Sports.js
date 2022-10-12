@@ -8,6 +8,7 @@ const Sports = () => {
   const [link, setLink] = useState([]);
 
   useEffect(() => {
+    //window.location.href = "sports";
     const fetchData = async () => {
       const { data } = await axios.get("https://server.kajitbe.com/api/news");
       setLink(data.reverse());
@@ -32,11 +33,6 @@ const Sports = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/sports/tenis">
-                টেনিস
-              </Link>
-            </li>
-            <li className="nav-item">
               <Link className="nav-link" to="/sports/other">
                 অন্য খেলা
               </Link>
@@ -58,11 +54,21 @@ const Sports = () => {
                               alt="news"
                             />
                           </div>
-                          <div className=" mx-2 newsCardContent">
+                          <div className="my-3 mx-2 newsCardContent">
                             <h5 className="newsTitle card-title">
                               {item.title}
                             </h5>
                             <p className="card-text newsDes1">{item.des1}</p>
+                          </div>
+                        </div>
+                        <div className="btnAndtime card-footer mt-auto text-muted">
+                          <div>
+                            <span>
+                              {item.postDate ? item.postDate : "somedays ago"}
+                            </span>
+                          </div>
+                          <div>
+                            <h6 className="text-primary">আরো পড়ুন</h6>
                           </div>
                         </div>
                       </div>

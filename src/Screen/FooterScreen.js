@@ -61,9 +61,9 @@ const FooterScreen = () => {
             <a className="text-white" href={ylink && ylink.ytLink}>
               <i className="fab mx-1 fa-youtube"></i>
             </a>
-            <h6>
+            <a className="text-white" href={ylink && ylink.ytLink}>
               <i className="fab fa-whatsapp"></i>
-            </h6>
+            </a>
           </div>
         </div>
       </div>

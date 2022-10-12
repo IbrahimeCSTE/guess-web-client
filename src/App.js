@@ -27,7 +27,6 @@ import NewsManage from "./Admin/NewsManage";
 import CricketSceen from "./Screen/CricketSceen";
 import FootballScreen from "./Screen/FootballScreen";
 import SingleNewsScreen from "./Screen/SingleNewsScreen";
-import TenisScreen from "./Screen/TenisScreen";
 import OtherGameScreen from "./Screen/OtherGameScreen";
 function App() {
   return (
@@ -49,7 +48,7 @@ function App() {
           />
           <Route exact path="/sports/cricket" component={CricketSceen} />
           <Route exact path="/sports/football" component={FootballScreen} />
-          <Route exact path="/sports/tenis" component={TenisScreen} />
+
           <Route exact path="/sports/other" component={OtherGameScreen} />
 
           <PrivateRoute exact path="/pkadmin">

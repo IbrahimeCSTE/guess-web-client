@@ -18,6 +18,8 @@ const NewsManage = () => {
   const [newsId, setNewsId] = useState("");
   const [loading, setLoading] = useState(false);
   const [link, setLink] = useState([]);
+  const [postDate, setPostDate] = useState();
+  const [upPostDate, setUpPostDate] = useState();
 
   const handleImageUpload = async (e) => {
     setLoading(true);
@@ -50,6 +52,7 @@ const NewsManage = () => {
       des1,
       des2,
       catagory,
+      postDate,
     });
     //console.log(data);
     toast(data);
@@ -57,6 +60,7 @@ const NewsManage = () => {
     setDes1(" ");
     setDes2(" ");
     setCatagory(" ");
+    setPostDate(" ");
   };
 
   useEffect(() => {
@@ -88,6 +92,7 @@ const NewsManage = () => {
         upDes2,
         upCatagory,
         newsId,
+        upPostDate,
       });
       //console.log(data);
       toast(data);
@@ -116,6 +121,13 @@ const NewsManage = () => {
                 ""
               )}
             </div>
+            <input
+              value={postDate}
+              onChange={(e) => setPostDate(e.target.value)}
+              type="text"
+              className="form-control my-2"
+              placeholder="Post date and time"
+            />
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
@@ -207,6 +219,13 @@ const NewsManage = () => {
                       placeholder="_id"
                     />
                     <input
+                      value={upPostDate}
+                      onChange={(e) => setUpPostDate(e.target.value)}
+                      type="text"
+                      className="form-control my-2"
+                      placeholder="Post date and time"
+                    />
+                    <input
                       value={upTitle}
                       onChange={(e) => setUpTitle(e.target.value)}
                       type="text"
@@ -237,9 +256,9 @@ const NewsManage = () => {
                       <option selected>Choice Catagory</option>
                       <option value="cricket">Cricket</option>
                       <option value="football">Football</option>
-                      <option value="tenis">Tenis</option>
                       <option value="other">Other</option>
                     </select>
+
                     <button
                       onClick={editBtn}
                       className="btn btn-info form-control my-2"
