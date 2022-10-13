@@ -33,11 +33,6 @@ const FootballScreen = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/sports/tenis">
-                টেনিস
-              </Link>
-            </li>
-            <li className="nav-item">
               <Link className="nav-link" to="/sports/other">
                 অন্য খেলা
               </Link>

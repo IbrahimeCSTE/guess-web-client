@@ -16,7 +16,9 @@ const SingleNewsScreen = () => {
     const fetchData = async () => {
       const { data } = await axios.get("https://server.kajitbe.com/api/news");
       setLink(data.reverse());
-      const data1 = await axios.get("http://localhost:5000/api/news/comment");
+      const data1 = await axios.get(
+        "https://server.kajitbe.com/api/news/comment"
+      );
       setAllComment(data1.data);
       console.log(data1);
     };
@@ -31,7 +33,7 @@ const SingleNewsScreen = () => {
       { commentId, comment }
     );
     toast(data);
-    // console.log(data);
+    setComment("");
   };
   return (
     <div className="container my-4">
