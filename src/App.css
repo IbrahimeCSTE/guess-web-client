@@ -221,6 +221,16 @@ i,a{
   justify-content: space-between;
   
 }
+
+.commentSection input{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.commentElement{
+  font-size: 20px;
+}
+
 @media only screen and (max-width:662px) {
   .subEmail{
     display:none;
