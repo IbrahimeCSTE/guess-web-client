@@ -28,6 +28,8 @@ import CricketSceen from "./Screen/CricketSceen";
 import FootballScreen from "./Screen/FootballScreen";
 import SingleNewsScreen from "./Screen/SingleNewsScreen";
 import OtherGameScreen from "./Screen/OtherGameScreen";
+import Login from "./Component/User/Login";
+import Register from "./Component/User/Register";
 function App() {
   return (
     <div>
@@ -50,6 +52,8 @@ function App() {
           <Route exact path="/sports/football" component={FootballScreen} />
 
           <Route exact path="/sports/other" component={OtherGameScreen} />
+          <Route exact path="/user/login" component={Login} />
+          <Route exact path="/user/register" component={Register} />
 
           <PrivateRoute exact path="/pkadmin">
             <AdminScreen />

@@ -11,8 +11,11 @@ const SingleNewsScreen = () => {
   const [link, setLink] = useState([]);
   const [comment, setComment] = useState();
   const [allComment, setAllComment] = useState([]);
+  const [loginUser, setLoginUser] = useState({});
 
   useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("User"));
+    setLoginUser(userData ? userData.newUser : "");
     const fetchData = async () => {
       const { data } = await axios.get("https://server.kajitbe.com/api/news");
       setLink(data.reverse());
@@ -20,17 +23,17 @@ const SingleNewsScreen = () => {
         "https://server.kajitbe.com/api/news/comment"
       );
       setAllComment(data1.data);
-      console.log(data1);
     };
     fetchData();
   }, []);
   const singleNews = link.filter((item) => item._id === id);
   const commentBox = allComment.filter((item) => item.commentId === id);
-  console.log(allComment);
-  const addCommet = async (commentId) => {
+  //console.log(loginUser);
+
+  const addCommet = async (commentId, name, email, photo) => {
     const { data } = await axios.post(
       "https://server.kajitbe.com/api/news/comment/new",
-      { commentId, comment }
+      { commentId, comment, name, email, photo }
     );
     toast(data);
     setComment("");
@@ -50,11 +53,7 @@ const SingleNewsScreen = () => {
               ফুটবল
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to="/sports/tenis">
-              টেনিস
-            </Link>
-          </li>
+
           <li className="nav-item">
             <Link className="nav-link" to="/sports/other">
               অন্য খেলা
@@ -82,23 +81,50 @@ const SingleNewsScreen = () => {
                     className="form-control my-2"
                     placeholder="কমেন্ট করুন....."
                   />
-                  <button
-                    onClick={() => addCommet(item._id)}
-                    className="btn btn-primary"
-                  >
-                    comment
-                  </button>
+                  <div>
+                    {loginUser ? (
+                      <button
+                        onClick={() =>
+                          addCommet(
+                            item._id,
+                            loginUser.displayName,
+                            loginUser.email,
+                            loginUser.photoURL
+                          )
+                        }
+                        className="btn btn-primary"
+                      >
+                        comment
+                      </button>
+                    ) : (
+                      <div className="linkRegister  my-3">
+                        <h5>
+                          কমেন্ট করতে
+                          <Link className="mx-2" to="/user/login">
+                            লগ-ইন
+                          </Link>{" "}
+                          করুন।
+                        </h5>
+                      </div>
+                    )}
+                  </div>
+
                   <ToastContainer />
                 </div>
                 <div className="showComment">
                   {commentBox.length > 0 ? (
                     commentBox.map((item, idx) => (
-                      <div className="d-flex commentElement my-2" key={idx}>
-                        <div>
-                          <i className="fas mx-2 fa-user-circle"></i>
+                      <div className="commentElement  my-4" key={idx}>
+                        <div className="commentImg">
+                          <img src={item.photo} alt="" />
                         </div>
-                        <div>
-                          <small>{item.comment}</small>
+                        <div className="mx-3">
+                          <div className="commentor">
+                            <small className="text-primary">{item.name}</small>
+                          </div>
+                          <div className="comment">
+                            <small>{item.comment}</small>
+                          </div>
                         </div>
                       </div>
                     ))

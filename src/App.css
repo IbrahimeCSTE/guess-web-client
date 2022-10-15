@@ -5,6 +5,7 @@
 body{
   font-family: 'Roboto Slab', serif;
   font-family: 'Ubuntu', sans-serif;
+  font-weight: 500;
 
 }
 i,a{
@@ -228,7 +229,22 @@ i,a{
   border-right: none;
 }
 .commentElement{
+  font-size: 23px;
+  display: flex;
+  align-items: center;
+}
+.commentImg img{
+  height: 50px;
+  width: 50px;
+  border-radius: 25px;
+}
+.comment{
   font-size: 20px;
+}
+
+
+.fa-google{
+  color: #f20808;
 }
 
 @media only screen and (max-width:662px) {

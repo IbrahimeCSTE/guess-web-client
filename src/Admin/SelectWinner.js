@@ -8,23 +8,27 @@ const SelectWinner = () => {
   const [winnerTeam, setWinnerTeam] = useState("");
   const [winnerNo, setWinnerNo] = useState("");
   const [allIdea, setAllIdea] = useState([]);
-  const [winnerId, setWinnerId] = useState([]);
+  const [winner, setWinner] = useState([]);
   //const [mobile, setMobile] = useState("017272020202");
 
   const handleWinner = async () => {
     let RandomNo = [];
-    const winnerList = allIdea.filter((item) => item.team === winnerTeam);
-
+    let winnerList = allIdea.filter((item) => item.team === winnerTeam);
     if (parseInt(winnerNo) <= winnerList.length) {
       for (let i = 0; parseInt(winnerNo) !== RandomNo.length; i++) {
         let winnerIdx = Math.floor(Math.random() * winnerList.length);
         let found = RandomNo.includes(winnerIdx);
         if (!found) {
-          // console.log(typeof mobile);
+          const finalWinner = winnerList[winnerIdx];
           const { data } = await axios.post(
             "https://server.kajitbe.com/api/winner-result",
             {
-              winnerIdx,
+              name: finalWinner.name,
+              mobile: finalWinner.mobile,
+              email: finalWinner.email,
+              zila: finalWinner.zila,
+              code: finalWinner.code,
+              team: finalWinner.team,
             }
           );
           toast(data);
@@ -43,7 +47,7 @@ const SelectWinner = () => {
       const res = await axios.get(
         "https://server.kajitbe.com/api/winner-result"
       );
-      setWinnerId(res.data);
+      setWinner(res.data);
     };
     fetchData();
   }, []);
@@ -79,19 +83,17 @@ const SelectWinner = () => {
         <ToastContainer />
       </div>
       <div className="Winners card winnerCard p-4">
-        {winnerId.length > 0 &&
-          winnerId.map((res, idx) => (
+        {winner.length > 0 &&
+          winner.map((res, idx) => (
             <div key={idx} className="card my-2">
               <div className="winnerPerson">
                 <h5>{idx + 1}</h5>
                 <h5>
                   <i className="fas fa-user-circle"></i>
-                  {allIdea[res.winnerIdx] && allIdea[res.winnerIdx].name}
+                  {res.name}
                 </h5>
-                <h5>
-                  {allIdea[res.winnerIdx] && allIdea[res.winnerIdx].mobile}
-                </h5>
-                <h5>{allIdea[res.winnerIdx] && allIdea[res.winnerIdx].zila}</h5>
+                <h5>{res.mobile}</h5>
+                <h5>{res.zila}</h5>
                 <button
                   className="btn btn-danger btn-sm"
                   onClick={() => deleteWinner(res._id)}

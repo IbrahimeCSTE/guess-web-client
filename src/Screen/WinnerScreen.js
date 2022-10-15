@@ -2,18 +2,15 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const WinnerScreen = () => {
-  const [allIdea, setAllIdea] = useState([]);
-  const [winnerId, setWinnerId] = useState([]);
+  const [winner, setWinner] = useState([]);
 
   useEffect(() => {
-    window.document.title = "/winner";
+    window.document.title = "winner";
     const fetchData = async () => {
-      const { data } = await axios.get("https://server.kajitbe.com/api/idea");
-      setAllIdea(data);
       const res = await axios.get(
         "https://server.kajitbe.com/api/winner-result"
       );
-      setWinnerId(res.data);
+      setWinner(res.data);
     };
     fetchData();
   }, []);
@@ -26,8 +23,8 @@ const WinnerScreen = () => {
         <hr />
       </div>
       <div className="Winners card winnerCard p-4">
-        {winnerId.length > 0 ? (
-          winnerId.map((res, idx) => (
+        {winner.length > 0 ? (
+          winner.map((res, idx) => (
             <div key={idx} className="card my-2">
               <div className="winnerPerson row">
                 <div className="col-md-3">
@@ -36,18 +33,14 @@ const WinnerScreen = () => {
                 <div className="col-md-3">
                   <h5>
                     <i className="fas fa-user-circle"></i>
-                    {allIdea[res.winnerIdx] && allIdea[res.winnerIdx].name}
+                    {res.name}
                   </h5>
                 </div>
                 <div className="col-md-3">
-                  <h5>
-                    {allIdea[res.winnerIdx] && allIdea[res.winnerIdx].mobile}
-                  </h5>
+                  <h5>{res.mobile}</h5>
                 </div>
                 <div className="col-md-3">
-                  <h5>
-                    {allIdea[res.winnerIdx] && allIdea[res.winnerIdx].zila}
-                  </h5>
+                  <h5>{res.zila}</h5>
                 </div>
               </div>
             </div>

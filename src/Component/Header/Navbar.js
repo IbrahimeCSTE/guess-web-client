@@ -1,6 +1,32 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import { getAuth, signOut } from "firebase/auth";
+import app from "../Firebase/FirebaseAuth";
+
+const auth = getAuth(app);
 const Navbar = () => {
+  const [loginUser, setLoginUser] = useState({});
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem("User"));
+    if (userData) {
+      setLoginUser(userData.newUser);
+    }
+  }, []);
+  // console.log(loginUser.email);
+  const userLogout = () => {
+    signOut(auth)
+      .then(() => {
+        toast("লগ আউট সম্পন্ন হয়েছে।");
+        window.location.href = "/";
+        localStorage.removeItem("User");
+      })
+      .catch((error) => {
+        toast(error.massage);
+      });
+  };
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbarBg">
@@ -20,7 +46,7 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav me-auto">
               <li className="nav-item">
                 <Link to="/" className="nav-link LinkColor" aria-current="page">
                   হোম
@@ -52,6 +78,29 @@ const Navbar = () => {
                   প্রাইভেট
                 </Link>
               </li>
+            </ul>
+
+            <ul className="navbar-nav">
+              {loginUser.email ? (
+                <li className="nav-item text-end">
+                  <button
+                    onClick={userLogout}
+                    className="btn btn-dark text-white LinkColor"
+                  >
+                    লগ-আউট
+                  </button>
+                  <ToastContainer />
+                </li>
+              ) : (
+                <li className="nav-item text-end">
+                  <Link
+                    to="/user/login"
+                    className="nav-link loginBtn LinkColor"
+                  >
+                    <button className="btn btn-dark text-white"> লগ-ইন</button>
+                  </Link>
+                </li>
+              )}
             </ul>
           </div>
         </div>
