@@ -1,6 +1,6 @@
 import React from "react";
-import firebase from "firebase/compat/app";
-import "firebase/compat/auth";
+import firebase from "firebase/app";
+import "firebase/auth";
 import appTest from "../Firebase/Firebase8";
 
 const TestLogin = () => {
