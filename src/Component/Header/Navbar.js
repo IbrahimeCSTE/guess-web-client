@@ -3,11 +3,11 @@ import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-import firebase from "firebase/app";
-import "firebase/auth";
-import appTest from "../Firebase/Firebase8";
+import { getAuth, signOut } from "firebase/auth";
+import app from "../Firebase/FirebaseAuth";
 
 const Navbar = () => {
+  const auth = getAuth(app);
   const [loginUser, setLoginUser] = useState({});
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("User"));
@@ -17,29 +17,15 @@ const Navbar = () => {
   }, []);
   // console.log(loginUser.email);
   const userLogout = () => {
-    firebase
-      .auth(appTest)
-      .signOut()
+    signOut(auth)
       .then(() => {
-        // Sign-out successful.
         toast("লগ আউট সম্পন্ন হয়েছে।");
         window.location.href = "/";
         localStorage.removeItem("User");
       })
       .catch((error) => {
-        // An error happened.
         toast(error.massage);
       });
-
-    // signOut(auth)
-    //   .then(() => {
-    //     toast("লগ আউট সম্পন্ন হয়েছে।");
-    //     window.location.href = "/";
-    //     localStorage.removeItem("User");
-    //   })
-    //   .catch((error) => {
-    //     toast(error.massage);
-    //   });
   };
   return (
     <div>

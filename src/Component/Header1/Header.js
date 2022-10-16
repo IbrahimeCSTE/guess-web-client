@@ -41,17 +41,31 @@ const Header = () => {
                 style={{ fontSize: "2em" }}
               />
               <div className="showTime justify-content-center d-flex text-dark text-center">
-                <div className="displayTime">
-                  <h2>
-                    {" "}
-                    {link ? link.hour : "00"}:{link ? link.min : "00"}:
-                    {link ? link.sec : "00"} {link ? link.ampm : ""}
-                  </h2>
-                  <h6>
-                    {" "}
-                    {link ? link.date : ""}/{link ? link.month : ""}/
-                    {link ? link.year : ""}
-                  </h6>
+                <div>
+                  {link ? (
+                    <div className="displayTime">
+                      <h2>
+                        {" "}
+                        {link ? link.hour : "00"}
+                        {link ? ":" : ""}
+                        {link ? link.min : "00"}
+                        {link ? ":" : ""}
+                        {link ? link.sec : "00"} {link ? link.ampm : ""}
+                      </h2>
+                      <h6>
+                        {" "}
+                        {link ? link.date : ""}
+                        {link ? "/" : ""}
+                        {link ? link.month : ""}
+                        {link ? "/" : ""}
+                        {link ? link.year : ""}
+                      </h6>
+                    </div>
+                  ) : (
+                    <div className="spinner-border" role="status">
+                      <span className="visually-hidden">Loading...</span>
+                    </div>
+                  )}
                 </div>
               </div>
 

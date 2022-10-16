@@ -30,7 +30,6 @@ import SingleNewsScreen from "./Screen/SingleNewsScreen";
 import OtherGameScreen from "./Screen/OtherGameScreen";
 import Login from "./Component/User/Login";
 import Register from "./Component/User/Register";
-import TestLogin from "./Component/User/TestLogin";
 function App() {
   return (
     <div>
@@ -39,7 +38,6 @@ function App() {
         <Navbar />
         <Switch>
           <Route exact path="/" component={HomeScreen} />
-          <Route exact path="/testlogin" component={TestLogin} />
           <Route exact path="/winner-prize" component={WinnerScreen} />
           <Route exact path="/own-idea" component={IdeaScreen} />
           <Route exact path="/private" component={PravateScreen} />
