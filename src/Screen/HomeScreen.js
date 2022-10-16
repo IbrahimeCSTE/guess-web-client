@@ -4,17 +4,16 @@ import DynamicText from "./DynamicText";
 import FooterScreen from "../Screen/FooterScreen";
 import Sports from "./Sports";
 
-// import { getAnalytics, logEvent } from "firebase/analytics";
+import { getAnalytics, logEvent } from "firebase/analytics";
 
-// import { useEffect } from "react";
+import { useEffect } from "react";
 // import app from "../Component/Firebase/FirebaseAuth";
 
 const HomeScreen = () => {
-  //   const googleAnalytics = getAnalytics();
-
-  //   useEffect(() => {
-  //     logEvent(googleAnalytics, "visited all client");
-  //   }, []);
+  const googleAnalytics = getAnalytics();
+  useEffect(() => {
+    logEvent(googleAnalytics, "visited all client");
+  }, []);
   return (
     <div>
       <Header />
