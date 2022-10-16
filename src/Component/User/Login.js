@@ -1,25 +1,22 @@
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  getAuth,
-  GoogleAuthProvider,
-  sendEmailVerification,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-} from "firebase/auth";
-import app from "../Firebase/FirebaseAuth";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-const auth = getAuth(app);
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import appTest from "../Firebase/Firebase8";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const provider = new GoogleAuthProvider();
+  //const provider = new GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
   const googleAuth = () => {
-    signInWithPopup(auth, provider)
+    firebase
+      .auth(appTest)
+      .signInWithPopup(provider)
       .then((result) => {
         const userArr = {};
         const user = result.user;
@@ -33,21 +30,41 @@ const Login = () => {
         }, 2000);
       })
       .catch((error) => {
-        //console.log(error.message);
-        toast(error.message);
+        // Handle Errors here.
+        const errorMessage = error.message;
+        toast(errorMessage);
       });
+
+    // signInWithPopup(auth, provider)
+    //   .then((result) => {
+    //     const userArr = {};
+    //     const user = result.user;
+    //     userArr.newUser = user;
+    //     console.log(user);
+    //     localStorage.setItem("User", JSON.stringify(userArr));
+    //     // console.log(userArr.newUser);
+    //     toast("লগ-ইন সম্পন্ন হয়েছে।");
+    //     setInterval(() => {
+    //       window.location.href = "/";
+    //     }, 2000);
+    //   })
+    //   .catch((error) => {
+    //     //console.log(error.message);
+    //     toast(error.message);
+    //   });
   };
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
+    firebase
+      .auth(appTest)
+      .signInWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in
         const userArr = {};
         const user = userCredential.user;
         userArr.newUser = user;
-        console.log(user);
-
+        // console.log(user);
         if (user.emailVerified) {
           localStorage.setItem("User", JSON.stringify(userArr));
           toast("লগ-ইন সম্পন্ন হয়েছে।");
@@ -55,15 +72,39 @@ const Login = () => {
             window.location.href = "/";
           }, 2000);
         } else {
-          sendEmailVerification(auth.currentUser).then(() => {
-            toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
-          });
+          // sendEmailVerification(auth.currentUser).then(() => {
+          //   toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
+          // });
         }
       })
       .catch((error) => {
         toast(error.message);
-        //console.log(error);
       });
+
+    // signInWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const userArr = {};
+    //     const user = userCredential.user;
+    //     userArr.newUser = user;
+    //     // console.log(user);
+
+    //     if (user.emailVerified) {
+    //       localStorage.setItem("User", JSON.stringify(userArr));
+    //       toast("লগ-ইন সম্পন্ন হয়েছে।");
+    //       setInterval(() => {
+    //         window.location.href = "/";
+    //       }, 2000);
+    //     } else {
+    //       sendEmailVerification(auth.currentUser).then(() => {
+    //         toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
+    //       });
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     toast(error.message);
+    //     //console.log(error);
+    //   });
   };
 
   return (

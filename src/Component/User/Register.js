@@ -1,39 +1,40 @@
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  GoogleAuthProvider,
-  sendEmailVerification,
-  signInWithPopup,
-  updateProfile,
-} from "firebase/auth";
-import { useState } from "react";
-import app from "../Firebase/FirebaseAuth";
-import { Link } from "react-router-dom";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
 
-const auth = getAuth(app);
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import appTest from "../Firebase/Firebase8";
+
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
 
-  const provider = new GoogleAuthProvider();
+  //const provider = new GoogleAuthProvider();
+  const provider = new firebase.auth.GoogleAuthProvider();
   const googleAuth = () => {
-    signInWithPopup(auth, provider)
+    firebase
+      .auth(appTest)
+      .signInWithPopup(provider)
       .then((result) => {
         const userArr = {};
         const user = result.user;
         userArr.newUser = user;
+        console.log(user);
         localStorage.setItem("User", JSON.stringify(userArr));
         // console.log(userArr.newUser);
-        toast("রেজিস্ট্রেশন সম্পন্ন হয়েছে।");
-        // window.location.href = "/";
+        toast("লগ-ইন সম্পন্ন হয়েছে।");
+        setInterval(() => {
+          window.location.href = "/";
+        }, 2000);
       })
       .catch((error) => {
-        //console.log(error.message);
-        toast(error.message);
+        // Handle Errors here.
+        const errorMessage = error.message;
+        toast(errorMessage);
       });
   };
 
@@ -43,7 +44,10 @@ const Register = () => {
       alert("পাসওয়ার্ড মিনিমাম ৬ ডিজিট হতে হবে।");
       return;
     }
-    createUserWithEmailAndPassword(auth, email, password)
+
+    firebase
+      .auth(appTest)
+      .createUserWithEmailAndPassword(email, password)
       .then((userCredential) => {
         // Signed in
         const userArr = {};
@@ -54,33 +58,57 @@ const Register = () => {
         setName("");
         setEmail("");
         setPassword("");
-        sendEmailVerification(auth.currentUser).then(() => {
-          toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
-          setInterval(() => {
-            window.location.href = "/user/login";
-          }, 3000);
-        });
+        // sendEmailVerification(auth.currentUser).then(() => {
+        //   toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
+        //   setInterval(() => {
+        //     window.location.href = "/user/login";
+        //   }, 3000);
+        // });
+        // // ...
       })
       .catch((error) => {
-        //const errorCode = error.code;
         const errorMessage = error.message;
         toast(errorMessage);
-        // ..
       });
+
+    // createUserWithEmailAndPassword(auth, email, password)
+    //   .then((userCredential) => {
+    //     // Signed in
+    //     const userArr = {};
+    //     const user = userCredential.user;
+    //     userArr.newUser = user;
+    //     // localStorage.setItem("User", JSON.stringify(userArr));
+    //     updateUserProfile();
+    //     setName("");
+    //     setEmail("");
+    //     setPassword("");
+    //     sendEmailVerification(auth.currentUser).then(() => {
+    //       toast("আপনার ই-মেইল ভেরিফাই করে পুনরায় লগ-ইন করুন");
+    //       setInterval(() => {
+    //         window.location.href = "/user/login";
+    //       }, 3000);
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     //const errorCode = error.code;
+    //     const errorMessage = error.message;
+    //     toast(errorMessage);
+    //     // ..
+    //   });
   };
   const updateUserProfile = () => {
-    updateProfile(auth.currentUser, {
-      displayName: name,
-      photoURL:
-        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRF-ExnKXwTybHkZFPV8PAniae32NIh-AgiA&usqp=CAU",
-    })
-      .then(() => {
-        // Profile updated!
-        // ...
-      })
-      .catch((error) => {
-        toast(error.massage);
-      });
+    // updateProfile(auth.currentUser, {
+    //   displayName: name,
+    //   photoURL:
+    //     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRF-ExnKXwTybHkZFPV8PAniae32NIh-AgiA&usqp=CAU",
+    // })
+    //   .then(() => {
+    //     // Profile updated!
+    //     // ...
+    //   })
+    //   .catch((error) => {
+    //     toast(error.massage);
+    //   });
   };
   return (
     <div className="container my-5">

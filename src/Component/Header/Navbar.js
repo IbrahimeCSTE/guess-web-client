@@ -3,10 +3,10 @@ import { useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-import { getAuth, signOut } from "firebase/auth";
-import app from "../Firebase/FirebaseAuth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import appTest from "../Firebase/Firebase8";
 
-const auth = getAuth(app);
 const Navbar = () => {
   const [loginUser, setLoginUser] = useState({});
   useEffect(() => {
@@ -17,15 +17,29 @@ const Navbar = () => {
   }, []);
   // console.log(loginUser.email);
   const userLogout = () => {
-    signOut(auth)
+    firebase
+      .auth(appTest)
+      .signOut()
       .then(() => {
+        // Sign-out successful.
         toast("লগ আউট সম্পন্ন হয়েছে।");
         window.location.href = "/";
         localStorage.removeItem("User");
       })
       .catch((error) => {
+        // An error happened.
         toast(error.massage);
       });
+
+    // signOut(auth)
+    //   .then(() => {
+    //     toast("লগ আউট সম্পন্ন হয়েছে।");
+    //     window.location.href = "/";
+    //     localStorage.removeItem("User");
+    //   })
+    //   .catch((error) => {
+    //     toast(error.massage);
+    //   });
   };
   return (
     <div>
