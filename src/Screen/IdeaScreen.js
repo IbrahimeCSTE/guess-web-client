@@ -34,7 +34,7 @@ const IdeaScreen = () => {
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
-    console.log(name, mobile, email, zila, code, team);
+    //console.log(name, mobile, email, zila, code, team);
     const { data } = await axios.post("https://server.kajitbe.com/api/idea", {
       name,
       mobile,
@@ -43,7 +43,7 @@ const IdeaScreen = () => {
       code,
       team,
     });
-    toast(data);
+    toast(`${data} দয়া করে আমাদের চ্যানেলটি সাবস্ক্রাইব করুন।`);
 
     //console.log(1);
     setName("");
@@ -52,8 +52,10 @@ const IdeaScreen = () => {
     setDistic("");
     setCode("");
     setWinner("");
-    window.location.href =
-      "https://www.youtube.com/channel/UCwLWQd__jp01MCd3s5Q1a3g?sub_confirmation=1";
+    setInterval(() => {
+      window.location.href =
+        "https://www.youtube.com/channel/UCwLWQd__jp01MCd3s5Q1a3g?sub_confirmation=1";
+    }, 1500);
   };
 
   useEffect(() => {
