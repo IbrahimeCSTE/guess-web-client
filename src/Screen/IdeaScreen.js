@@ -44,6 +44,7 @@ const IdeaScreen = () => {
       team,
     });
     toast(data);
+
     //console.log(1);
     setName("");
     setMobile("");
@@ -51,6 +52,8 @@ const IdeaScreen = () => {
     setDistic("");
     setCode("");
     setWinner("");
+    window.location.href =
+      "https://www.youtube.com/channel/UCwLWQd__jp01MCd3s5Q1a3g?sub_confirmation=1";
   };
 
   useEffect(() => {

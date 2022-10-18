@@ -12,6 +12,9 @@ const SingleNewsScreen = () => {
   const [comment, setComment] = useState();
   const [allComment, setAllComment] = useState([]);
   const [loginUser, setLoginUser] = useState({});
+  const [updateComment, setUpdateComment] = useState("");
+  const [like, setLike] = useState(false);
+  const [dislike, setDislike] = useState(false);
 
   useEffect(() => {
     const userData = JSON.parse(localStorage.getItem("User"));
@@ -23,9 +26,10 @@ const SingleNewsScreen = () => {
         "https://server.kajitbe.com/api/news/comment"
       );
       setAllComment(data1.data);
+      // console.log(data1.data);
     };
     fetchData();
-  }, []);
+  }, [updateComment]);
   const singleNews = link.filter((item) => item._id === id);
   const commentBox = allComment.filter((item) => item.commentId === id);
   //console.log(loginUser);
@@ -37,7 +41,23 @@ const SingleNewsScreen = () => {
     );
     toast(data);
     setComment("");
+    setUpdateComment("clicked");
   };
+
+  const addIcon = (name, id) => {
+    // console.log(id);
+    // if (name === "like") {
+    //   setLike(true);
+    //   setDislike(false);
+    //   // console.log("click like");
+    // } else {
+    //   setLike(false);
+    //   setDislike(true);
+    //   //console.log("click dislike");
+    // }
+    // // console.log(name);
+  };
+
   return (
     <div className="container my-4">
       <h3 className="text-danger my-3">খেলাধুলা</h3>
@@ -114,9 +134,9 @@ const SingleNewsScreen = () => {
                 <div className="showComment">
                   {commentBox.length > 0 ? (
                     commentBox.map((item, idx) => (
-                      <div className="commentElement  my-4" key={idx}>
+                      <div className="commentElement  my-4 mb-5" key={idx}>
                         <div className="commentImg">
-                          <img src={item.photo} alt="" />
+                          <img src={item.photo} alt="Profile" />
                         </div>
                         <div className="mx-3">
                           <div className="commentor">
@@ -124,6 +144,28 @@ const SingleNewsScreen = () => {
                           </div>
                           <div className="comment">
                             <small>{item.comment}</small>
+                          </div>
+                          <div className="commentIcon">
+                            <div>
+                              <i
+                                onClick={() => addIcon("like", item._id)}
+                                className={
+                                  like
+                                    ? "fas text-primary fa-thumbs-up"
+                                    : "fas fa-thumbs-up"
+                                }
+                              ></i>
+                            </div>
+                            <div>
+                              <i
+                                onClick={() => addIcon("dislike", item._id)}
+                                className={
+                                  dislike
+                                    ? "fas text-primary fa-thumbs-down"
+                                    : "fas fa-thumbs-down"
+                                }
+                              ></i>
+                            </div>
                           </div>
                         </div>
                       </div>

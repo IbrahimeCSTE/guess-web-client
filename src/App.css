@@ -231,7 +231,7 @@ i,a{
 .commentElement{
   font-size: 23px;
   display: flex;
-  align-items: center;
+  
 }
 .commentImg img{
   height: 50px;
@@ -246,6 +246,14 @@ i,a{
 .fa-google{
   color: #f20808;
 }
+
+.commentIcon{
+  display: flex;
+}
+.commentIcon i{
+  margin: 10px;
+}
+
 
 @media only screen and (max-width:662px) {
   .subEmail{
