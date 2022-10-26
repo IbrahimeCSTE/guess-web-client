@@ -25,7 +25,7 @@ const SingleNewsScreen = () => {
       const data1 = await axios.get(
         "https://server.kajitbe.com/api/news/comment"
       );
-      setAllComment(data1.data);
+      setAllComment(data1.data.reverse());
       // console.log(data1.data);
     };
     fetchData();
