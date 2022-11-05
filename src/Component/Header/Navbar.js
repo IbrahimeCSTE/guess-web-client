@@ -81,7 +81,7 @@ const Navbar = () => {
             </ul>
 
             <ul className="navbar-nav">
-              {loginUser.email ? (
+              {loginUser?.email ? (
                 <li className="nav-item text-end">
                   <button
                     onClick={userLogout}
